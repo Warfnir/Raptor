@@ -27,7 +27,6 @@ Engine::Engine()
 	{
 		enemyShips.push_back(new B0_ship(rand()%800,rand()%600));
 	}
-
 	//my ship
 	myShip = new(MyShip);
 }
@@ -67,26 +66,16 @@ void Engine::update_backGround()
 	}
 }
 
-//??sprawdzenie polozenia pociskow - poza mapa
-void Engine::check_bullets()
-{
-	
-}
 
 //rysuje wszystkie elementy na oknie
 void Engine::drawAll()
 {
+	//CLEAR WINDOW AND DRAW UPDATED BACKGROUND
 	window.clear();
 	update_backGround();
 	window.draw(bg_sprite1);
 	window.draw(bg_sprite2);
-	/*
-		for (auto i = myBullet.begin(); i != myBullet.end(); i++)
-		{
-			Bullet *wsk = *i;
-			window.draw(*wsk);
-		}
-		*/
+
 
 	//DRAW BULLETS AND CHECK IF NEED TO DELETE
 	for (int i = 0; i < myBullet.size(); i++)
@@ -117,7 +106,25 @@ void Engine::drawAll()
 	//DRAW ENEMY SHIPS
 	for (int i = 0; i < enemyShips.size(); i++)
 	{
-		window.draw(*enemyShips[i]);
+		enemyShips[i]->outOfWindow();
+		if (enemyShips[i]->getLife() > 0 && !(enemyShips[i]->getOut()))
+		{
+			window.draw(*enemyShips[i]);
+		}
+		else 
+		{
+			if (enemyShips[i]->getLife() < 0)
+			{
+				myShip->grantPoints(enemyShips[i]->getPoints());
+				delete enemyShips[i];
+				enemyShips.erase(enemyShips.begin() + i);
+			}
+			else if (enemyShips[i]->getOut())
+			{
+				delete enemyShips[i];
+				enemyShips.erase(enemyShips.begin() + i);
+			}
+		}
 	}
 
 	//DRAW OUR SHIP
@@ -142,25 +149,17 @@ void Engine::drawAll()
 		}
 	}
 	//WYPISZ ZAWARTOSC WEKTOROW
+	/*
 	system("cls");
 	cout << "MyBullet: " << myBullet.size()<<endl;
 	cout << "Enemy ships: " << enemyShips.size() << endl;
 	cout << "Animations: " << animations.size() << endl;
 	cout << "EnemyBullets: " << enemyBullet.size() << endl;
+	*/
 
 }
 
-//??zwraca adres okna
-RenderWindow* Engine::getWindow()
-{
-	return &window;
-}
 
-//??zwraca "event"
-Event Engine::getEvent()
-{
-	return eve;
-}
 
 //przesuwa wszystkie elementy na mapie
 void Engine::move_All()

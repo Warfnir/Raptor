@@ -22,6 +22,7 @@ MyShip::MyShip()
 	R = sqrt(16*16*2);
 	HP = 100;
 	SHIELD = 100;
+	points = 0;
 	
 }
 /////////////////////////////////////////
@@ -113,4 +114,9 @@ void MyShip::getData()
 Vector2f MyShip::getPosition()
 {
 	return sprite.getPosition();
+}
+
+void MyShip::grantPoints(double pt)
+{
+	points += pt;
 }

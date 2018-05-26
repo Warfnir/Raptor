@@ -18,6 +18,7 @@ public:
 	void getData();
 	Vector2f getPosition();
 	void outOfWindow();
+	void grantPoints(double pt);
 
 	bool left, right, up, down;
 	

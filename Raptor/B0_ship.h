@@ -12,7 +12,5 @@ public:
 	void shoot(vector<Bullet*> &vec);
 	void move();
 	void trace(Vector2f pos); //require position of the enemy
-	void outOfWindow();
-
 };
 

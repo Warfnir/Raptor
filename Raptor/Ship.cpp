@@ -16,3 +16,4 @@ void Ship::gotHit(double dmg)
 {
 	HP -= dmg;
 }
+

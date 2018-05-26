@@ -7,11 +7,14 @@ class EnemyShip : public Ship
 {
 protected:
 	int way;
-	bool to_destroy;
+	bool out;
+	double points;
 public:
 	EnemyShip();
 	~EnemyShip();
-
-	
+	void outOfWindow() override;
+	bool getOut();
+	double getPoints();
+	double getLife();
 };
 
