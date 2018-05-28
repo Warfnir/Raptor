@@ -7,7 +7,7 @@ class MyShip : public Ship
 {
 private:
 	double cash;
-	double points;
+	int points;
 	int game_lvl;
 
 public:
@@ -19,7 +19,8 @@ public:
 	void getData();
 	Vector2f getPosition();
 	void outOfWindow();
-	void grantPoints(double pt);
+	void grantPoints(int pt);
+	int getPoints();
 
 	bool left, right, up, down;
 	

@@ -15,6 +15,7 @@ B0_ship::B0_ship(int x, int y)
 	R= sqrt(16 * 16 * 2);
 	sprite.setPosition(x, y);
 	out = false;
+	points = 50;
 	
 }
 

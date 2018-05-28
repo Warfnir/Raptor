@@ -8,13 +8,13 @@ class EnemyShip : public Ship
 protected:
 	int way;
 	bool out;
-	double points;
+	int points;
 public:
 	EnemyShip();
 	~EnemyShip();
 	void outOfWindow() override;
 	bool getOut();
-	double getPoints();
+	int getPoints();
 	double getLife();
 };
 

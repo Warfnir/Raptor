@@ -34,6 +34,9 @@ private:
 	//-----------------------------
 	//MUSIC
 	Music main_music;
+	//texts
+	Text myPoints;
+	Font font;
 public:
 	
 	bool window_ok();		//zwraca czy okno dziala

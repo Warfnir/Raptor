@@ -29,6 +29,11 @@ Engine::Engine()
 	}
 	//my ship
 	myShip = new(MyShip);
+	font.loadFromFile("PressStart2P.ttf");
+	myPoints.setFont(font);
+	myPoints.setCharacterSize(30);
+	myPoints.setStyle(sf::Text::Bold);
+	myPoints.setFillColor(sf::Color::Red);
 }
 
 
@@ -172,6 +177,15 @@ void Engine::drawAll()
 			}
 		}
 	}
+
+	//DRAW TEXTS
+	string txt;
+	txt = to_string(myShip->getPoints());
+	int txtSize = txt.size();
+	myPoints.setString(txt);
+	//myPoints.setString("HELLO THERE");
+	myPoints.setPosition(400-(txtSize/2)*30, 0);
+	window.draw(myPoints);
 	//WYPISZ ZAWARTOSC WEKTOROW
 	/*
 	system("cls");

@@ -26,7 +26,7 @@ bool EnemyShip::getOut()
 	return out;
 }
 
-double EnemyShip::getPoints()
+int EnemyShip::getPoints()
 {
 	return points;
 }

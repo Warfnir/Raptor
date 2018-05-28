@@ -116,7 +116,12 @@ Vector2f MyShip::getPosition()
 	return sprite.getPosition();
 }
 
-void MyShip::grantPoints(double pt)
+void MyShip::grantPoints(int pt)
 {
 	points += pt;
+}
+
+int MyShip::getPoints()
+{
+	return points;
 }
