@@ -63,8 +63,8 @@ void MyShip::shoot(vector<Bullet*> &vec)
 	{
 		float x = sprite.getPosition().x;
 		float y = sprite.getPosition().y;
-		vec.push_back(new Bullet(x - 12, y - 16));
-		vec.push_back(new Bullet(x + 4, y - 16));
+		vec.push_back(new Bullet(x - 12, y - 16,0,true));
+		vec.push_back(new Bullet(x + 4, y - 16,0,true));
 		shoot_delay.restart();
 	}
 }

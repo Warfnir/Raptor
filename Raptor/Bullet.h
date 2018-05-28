@@ -11,7 +11,7 @@ private:
 public:
 	void move();
 	bool outOfMap();
-	Bullet(float, float);
+	Bullet(float x, float y, float rotate, bool up);
 	~Bullet();
 	double getDmg();
 	bool getLife();

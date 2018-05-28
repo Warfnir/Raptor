@@ -20,11 +20,23 @@ B0_ship::B0_ship(int x, int y)
 
 void B0_ship::shoot(vector<Bullet*> &vec)
 {
-
+	cout << "shoot";
+	if (shoot_delay.getElapsedTime().asMilliseconds() > 1000)
+	{
+		vec.push_back(new Bullet(sprite.getPosition().x+5, sprite.getPosition().y+5,180,false));
+		shoot_delay.restart();
+	}
 }
 
 
-
+void B0_ship::aim(vector<Bullet*> &vec, Vector2f pos)
+{
+	if ((sprite.getPosition().x <(pos.x + 10) || sprite.getPosition().x >(pos.x - 10)) && sprite.getPosition().y < pos.y)
+	{
+		shoot(vec);
+	}
+	cout << vec.size();
+}
 
 void B0_ship::move()
 {

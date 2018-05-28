@@ -2,7 +2,7 @@
 #include "Bullet.h"
 
 
-Bullet::Bullet(float x, float y)
+Bullet::Bullet(float x, float y, float rotate, bool up)
 {
 	if (!texture.loadFromFile("bullet.png"))
 	{
@@ -11,8 +11,17 @@ Bullet::Bullet(float x, float y)
 	texture.setSmooth(true);
 	sprite.setTexture(texture);
 	sprite.setTextureRect(IntRect(0, 0, 16, 16));
-	vx = 0.0f;
-	vy = -8.0f;
+	sprite.rotate(rotate);
+	if (up)
+	{
+		vx = 0.0f;
+		vy = -8.0f;
+	}
+	else
+	{
+		vx = 0.0f;
+		vy = 8.0f;
+	}
 	sprite.setOrigin(8, 8);
 	sprite.setPosition(x, y);
 	R = sqrt(8 * 8 * 2);

@@ -12,6 +12,7 @@ private:
 
 public:
 	friend class Engine;
+	
 	void shoot(vector<Bullet*> &vec);
 	void move();
 	Sprite getSprite();

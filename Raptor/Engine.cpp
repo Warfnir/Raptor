@@ -102,7 +102,31 @@ void Engine::drawAll()
 			window.draw(*myBullet[i]);
 		}
 	}
+	//ENEMY BULLETS
+	for (int i = 0; i < enemyBullet.size(); i++)
+	{
+		//Bullet *wsk = *i;
+		if (enemyBullet[i]->outOfMap() || !(enemyBullet[i]->getLife()))
+		{
+			if (enemyBullet[i]->outOfMap())
+			{
+				delete enemyBullet[i];
+				enemyBullet.erase(enemyBullet.begin() + i);
+			}
+			else if (!(enemyBullet[i]->getLife()))
+			{
+				animations.push_back(new bullet_explode_animation(enemyBullet[i]->getPosition()));
+				delete enemyBullet[i];
+				enemyBullet.erase(enemyBullet.begin() + i);
 
+			}
+		}
+		//DRAW BULLET IF NOT DESTROYED
+		else
+		{
+			window.draw(*enemyBullet[i]);
+		}
+	}
 	//DRAW ENEMY SHIPS
 	for (int i = 0; i < enemyShips.size(); i++)
 	{
@@ -170,14 +194,20 @@ void Engine::move_All()
 		Bullet *wsk = *i;
 		wsk->move();
 	}
-	//aktualizacja ruchu przeciwnikow
+	for (auto i = enemyBullet.begin(); i != enemyBullet.end(); i++)
+	{
+		Bullet *wsk = *i;
+		wsk->move();
+	}
+	//aktualizacja ruchu przeciwnikow + strzelanie
 	for (int i=0; i<enemyShips.size();i++)
 	{
 		if (typeid(*enemyShips[i]) == typeid(B0_ship))
 		{
 			B0_ship *wsk = dynamic_cast<B0_ship*>(enemyShips[i]);
 			wsk->trace(myShip->getPosition());
-			wsk->move();		
+			wsk->move();	
+			wsk->aim(enemyBullet, myShip->getPosition());
 		}	
 		
 	}
