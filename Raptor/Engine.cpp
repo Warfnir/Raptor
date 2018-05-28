@@ -246,7 +246,14 @@ void Engine::update_colission()
 		}
 	}
 	//enemy bullets + our ship
-
+	for (auto i : enemyBullet)
+	{
+		if (isCollision(i->getPosition(), i->getR(), myShip->getPosition(), myShip->getR()))
+		{
+			myShip->gotHit(i->getDmg());
+			i->destroy();
+		}
+	}
 	//our ship + enemy ships
 }
 

@@ -6,7 +6,7 @@ using namespace std;
 class Ship : public object
 {
 protected:
-	double HP;
+	int HP;
 	double SHIELD;
 	Clock shoot_delay;
 	

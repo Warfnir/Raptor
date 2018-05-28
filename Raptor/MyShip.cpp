@@ -125,3 +125,8 @@ int MyShip::getPoints()
 {
 	return points;
 }
+
+void MyShip::gotHit(int dmg)
+{
+	HP -= dmg;
+}

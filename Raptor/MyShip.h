@@ -21,6 +21,7 @@ public:
 	void outOfWindow();
 	void grantPoints(int pt);
 	int getPoints();
+	void gotHit(int dmg);
 
 	bool left, right, up, down;
 	
