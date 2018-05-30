@@ -8,7 +8,7 @@ Engine::Engine()
 	VideoMode vmode(800, 600);
 	Vector2u vec2u(800, 600);
 	window.create(vmode, "Raptor", Style::Default);
-	window.setFramerateLimit(60);
+	window.setFramerateLimit(120);
 
 	//background
 	main_music.openFromFile("Retribution.ogg");
@@ -22,18 +22,22 @@ Engine::Engine()
 	bg_sprite2.setTextureRect(IntRect(0, 0, 800, 1200));
 	bg_sprite2.setPosition(0, -1200);
 	
+	//my ship
+	myShip = new(MyShip);
+
 	//enemies
 	for (int i = 0; i < 5; i++)
 	{
-		enemyShips.push_back(new B0_ship(rand()%800,rand()%600));
+		enemyShips.push_back(new B0_ship(rand()%800,rand()%600, myShip->getGameLevel()));
 	}
-	//my ship
-	myShip = new(MyShip);
+	enemyShips.push_back(new boss_A(414, 64));
+	
 	font.loadFromFile("PressStart2P.ttf");
 	myPoints.setFont(font);
 	myPoints.setCharacterSize(30);
 	myPoints.setStyle(sf::Text::Bold);
 	myPoints.setFillColor(sf::Color::Red);
+	
 }
 
 
@@ -95,10 +99,18 @@ void Engine::drawAll()
 			}
 			else if (!(myBullet[i]->getLife()))
 			{
-				animations.push_back(new bullet_explode_animation(myBullet[i]->getPosition()));
-				delete myBullet[i];
-				myBullet.erase(myBullet.begin() + i);
-				
+				if (typeid(*myBullet[i]) == typeid(standard_bullet))
+				{
+					animations.push_back(new bullet_explode_animation(myBullet[i]->getPosition()));
+					delete myBullet[i];
+					myBullet.erase(myBullet.begin() + i);
+				}
+				else if (typeid(*myBullet[i]) == typeid(rocket))
+				{
+					animations.push_back(new rocket_explode_animation(myBullet[i]->getPosition()));
+					delete myBullet[i];
+					myBullet.erase(myBullet.begin() + i);
+				}
 			}
 		}
 		//DRAW BULLET IF NOT DESTROYED
@@ -176,6 +188,20 @@ void Engine::drawAll()
 				animations.erase(animations.begin() + i);
 			}
 		}
+		else if (typeid(*animations[i]) == typeid(rocket_explode_animation))
+		{
+			rocket_explode_animation *wsk = dynamic_cast<rocket_explode_animation*>(animations[i]);
+			if (!wsk->end_animation())
+			{
+				wsk->next_frame();
+				window.draw(*animations[i]);
+			}
+			else
+			{
+				delete animations[i];
+				animations.erase(animations.begin() + i);
+			}
+		}
 	}
 
 	//DRAW TEXTS
@@ -223,7 +249,10 @@ void Engine::move_All()
 			wsk->move();	
 			wsk->aim(enemyBullet, myShip->getPosition());
 		}	
-		
+		if (typeid(*enemyShips[i]) == typeid(boss_A))
+		{
+			boss_A*wsk = dynamic_cast<boss_A*>(enemyShips[i]);
+		}
 	}
 	myShip->move();
 	myShip->outOfWindow();
@@ -257,7 +286,13 @@ void Engine::update_colission()
 	//our ship + enemy ships
 }
 
-
+void Engine::updateNumberOfEnemies()
+{
+	if (enemyShips.size() < 10)
+	{
+		enemyShips.push_back(new B0_ship(rand() % 800, -60, myShip->getGameLevel()));
+	}
+}
 
 bool Engine::isCollision(Vector2f a, double Ra, Vector2f b, double Rb)
 {
@@ -317,6 +352,7 @@ void Engine::start()
 			 window.setView(view);*/
 	
 		move_All();				//przesuwa wszystkie elementy
+		updateNumberOfEnemies();
 		update_colission();
 		drawAll();				//rysuje wszystkie elementy
 		window.display();		//wyswietla okno

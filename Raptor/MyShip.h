@@ -10,6 +10,14 @@ private:
 	int points;
 	int game_lvl;
 
+	int bullet_upg;
+	int rocket_upg;
+	int laser_upg;
+
+	bool rocket_unclocked;
+	bool laser_unlocked;
+
+	Clock rocket_delay;
 public:
 	friend class Engine;
 	
@@ -24,6 +32,8 @@ public:
 	void gotHit(int dmg);
 
 	bool left, right, up, down;
+
+	int getGameLevel();
 	
 
 	MyShip();

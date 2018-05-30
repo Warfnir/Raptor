@@ -161,15 +161,20 @@
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="B0_ship.h" />
+    <ClInclude Include="boss_A.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="bullet_explode_animation.h" />
     <ClInclude Include="EnemyShip.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="laser.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MyShip.h" />
     <ClInclude Include="object.h" />
+    <ClInclude Include="rocket.h" />
+    <ClInclude Include="rocket_explode_animation.h" />
     <ClInclude Include="Ship.h" />
+    <ClInclude Include="standard_bullet.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tile.h" />
@@ -177,16 +182,21 @@
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="B0_ship.cpp" />
+    <ClCompile Include="boss_A.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="bullet_explode_animation.cpp" />
     <ClCompile Include="EnemyShip.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="laser.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MyShip.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="Raptor.cpp" />
+    <ClCompile Include="rocket.cpp" />
+    <ClCompile Include="rocket_explode_animation.cpp" />
     <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="standard_bullet.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

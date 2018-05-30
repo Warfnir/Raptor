@@ -1,15 +1,12 @@
 #pragma once
 #include "stdafx.h"
-
-class B0_ship:public EnemyShip
+using namespace sf;
+using namespace std;
+class boss_A :public EnemyShip
 {
-private:
- 
 public:
-	friend class Engine;
-
-	B0_ship(int x, int y, int lvl);
-	~B0_ship();
+	boss_A(float x, float y);
+	~boss_A();
 
 	void shoot(vector<Bullet*> &vec);	//strzal 
 	void aim(vector<Bullet*> &vec, Vector2f pos);	//sprawdza polozenie naszego statku i w odpowiednim momencie strzela

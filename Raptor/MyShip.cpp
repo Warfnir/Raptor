@@ -19,10 +19,21 @@ MyShip::MyShip()
 	
 	//basic stats
 	left = right = up = down = 0;
-	R = sqrt(16*16*2);
+	R = sqrt(8*8*2);
+
+	//HP SHIELDS POINTS
 	HP = 100;
 	SHIELD = 100;
 	points = 0;
+	game_lvl = 1;
+
+	//bullets
+	laser_unlocked = false;
+	rocket_unclocked = false;
+	laser_upg = 0;
+	rocket_upg = 0;
+	bullet_upg = 1;
+	
 	
 }
 /////////////////////////////////////////
@@ -59,13 +70,20 @@ Sprite MyShip::getSprite()
 /////////////////////////////////////////
 void MyShip::shoot(vector<Bullet*> &vec)
 {
-	if (shoot_delay.getElapsedTime().asMilliseconds() > 100)
+	if (shoot_delay.getElapsedTime().asMilliseconds() > 150)
 	{
 		float x = sprite.getPosition().x;
 		float y = sprite.getPosition().y;
-		vec.push_back(new Bullet(x - 12, y - 16,0,true));
-		vec.push_back(new Bullet(x + 4, y - 16,0,true));
+		vec.push_back(new standard_bullet(x - 12, y - 16,0, bullet_upg));
+		vec.push_back(new standard_bullet(x + 4, y - 16,0,bullet_upg));
 		shoot_delay.restart();
+	}
+	if (rocket_delay.getElapsedTime().asMilliseconds() > 500)
+	{
+		float x = sprite.getPosition().x;
+		float y = sprite.getPosition().y;
+		vec.push_back(new rocket(x - 12, y - 16, 0, bullet_upg));
+		rocket_delay.restart();
 	}
 }
 
@@ -129,4 +147,9 @@ int MyShip::getPoints()
 void MyShip::gotHit(int dmg)
 {
 	HP -= dmg;
+}
+
+int MyShip::getGameLevel()
+{
+	return game_lvl;
 }

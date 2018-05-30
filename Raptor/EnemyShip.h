@@ -9,6 +9,7 @@ protected:
 	int way;
 	bool out;
 	int points;
+	int level;
 public:
 	EnemyShip();
 	~EnemyShip();

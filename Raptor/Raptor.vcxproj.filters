@@ -57,6 +57,21 @@
     <ClInclude Include="bullet_explode_animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="boss_A.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="standard_bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="laser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rocket_explode_animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -99,6 +114,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bullet_explode_animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="boss_A.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="standard_bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="laser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rocket_explode_animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

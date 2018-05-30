@@ -5,13 +5,13 @@ using namespace std;
 
 class Bullet : public object
 {
-private:
+protected:
 	int dmg;
 	bool life;
 public:
 	void move();
 	bool outOfMap();
-	Bullet(float x, float y, float rotate, bool up);
+	Bullet(); 
 	~Bullet();
 	double getDmg();
 	bool getLife();

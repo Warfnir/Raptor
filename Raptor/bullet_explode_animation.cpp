@@ -18,7 +18,7 @@ bullet_explode_animation::~bullet_explode_animation()
 
 void bullet_explode_animation::next_frame()
 {
-	if (explosion_time.getElapsedTime().asMilliseconds() > 100)
+	if (explosion_time.getElapsedTime().asMilliseconds() > 50)
 	{
 		IntRect rect = sprite.getTextureRect();
 		if (rect.left >= 64)

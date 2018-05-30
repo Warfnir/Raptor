@@ -2,31 +2,9 @@
 #include "Bullet.h"
 
 
-Bullet::Bullet(float x, float y, float rotate, bool up)
+Bullet::Bullet()
 {
-	if (!texture.loadFromFile("bullet.png"))
-	{
-		cout << "Can't open bullet.png\n";
-	}
-	texture.setSmooth(true);
-	sprite.setTexture(texture);
-	sprite.setTextureRect(IntRect(0, 0, 16, 16));
-	sprite.rotate(rotate);
-	if (up)
-	{
-		vx = 0.0f;
-		vy = -8.0f;
-	}
-	else
-	{
-		vx = 0.0f;
-		vy = 8.0f;
-	}
-	sprite.setOrigin(8, 8);
-	sprite.setPosition(x, y);
-	R = sqrt(8 * 8 * 2);
-	dmg = 10;
-	life = true;
+	
 }
 
 double Bullet::getDmg()
@@ -48,7 +26,7 @@ bool Bullet::getLife()
 bool Bullet::outOfMap()
 {
 	
-	if (sprite.getPosition().y < -32)
+	if (sprite.getPosition().y < -32 || sprite.getPosition().y >632 || sprite.getPosition().x<-32 || sprite.getPosition().x >832)
 	{
 		return true;
 	}

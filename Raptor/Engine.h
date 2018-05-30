@@ -50,6 +50,7 @@ public:
 	void start();
 	void update_backGround();
 	void check_bullets();
+	void updateNumberOfEnemies();
 	//------
 	Engine();
 	~Engine();

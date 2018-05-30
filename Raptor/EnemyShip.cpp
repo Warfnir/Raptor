@@ -4,8 +4,7 @@
 
 EnemyShip::EnemyShip()
 {
-	out = false;
-	HP = 100;
+	
 }
 
 
