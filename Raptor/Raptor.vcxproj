@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="B0_ship.h" />
+    <ClInclude Include="bonus.h" />
     <ClInclude Include="boss_A.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="bullet_explode_animation.h" />
@@ -182,6 +183,7 @@
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="B0_ship.cpp" />
+    <ClCompile Include="bonus.cpp" />
     <ClCompile Include="boss_A.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="bullet_explode_animation.cpp" />

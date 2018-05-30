@@ -159,6 +159,7 @@ void Engine::drawAll()
 				myShip->grantPoints(enemyShips[i]->getPoints());
 				delete enemyShips[i];
 				enemyShips.erase(enemyShips.begin() + i);
+				bonuses.push_back(new bonus(Vector2f(400, 100), rand()%11, 1));
 			}
 			else if (enemyShips[i]->getOut())
 			{
@@ -202,6 +203,13 @@ void Engine::drawAll()
 				animations.erase(animations.begin() + i);
 			}
 		}
+	}
+	//DRAW BONUSES
+	for (auto i : bonuses)
+	{
+		i->move();
+		i->changeFrame();
+		window.draw(*i);
 	}
 
 	//DRAW TEXTS

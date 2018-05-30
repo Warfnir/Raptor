@@ -14,6 +14,7 @@ private:
 	friend class Bullet;
 	friend class Map;
 	friend class animation;
+	friend class bonus;
 
 	RenderWindow window;
 	Event eve;
@@ -32,6 +33,7 @@ private:
 	//-----------------------------
 	vector <animation*> animations;
 	//-----------------------------
+	vector <bonus*> bonuses;
 	//MUSIC
 	Music main_music;
 	//texts
