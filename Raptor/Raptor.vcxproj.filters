@@ -75,6 +75,9 @@
     <ClInclude Include="bonus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="B1_ship.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -135,6 +138,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bonus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="B1_ship.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

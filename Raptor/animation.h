@@ -5,6 +5,7 @@ class animation : public Drawable
 protected:
 	Sprite sprite;
 	Texture texture;
+	Music sound;
 public:
 	animation();
 	~animation();

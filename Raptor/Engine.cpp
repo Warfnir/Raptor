@@ -30,7 +30,7 @@ Engine::Engine()
 	{
 		enemyShips.push_back(new B0_ship(rand()%800,rand()%600, myShip->getGameLevel()));
 	}
-	enemyShips.push_back(new boss_A(414, 64));
+	enemyShips.push_back(new boss_A(410, -125));
 	
 	font.loadFromFile("PressStart2P.ttf");
 	myPoints.setFont(font);
@@ -260,6 +260,8 @@ void Engine::move_All()
 		if (typeid(*enemyShips[i]) == typeid(boss_A))
 		{
 			boss_A*wsk = dynamic_cast<boss_A*>(enemyShips[i]);
+			wsk->move();
+			wsk->shoot(enemyBullet);
 		}
 	}
 	myShip->move();

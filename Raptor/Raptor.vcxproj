@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="B0_ship.h" />
+    <ClInclude Include="B1_ship.h" />
     <ClInclude Include="bonus.h" />
     <ClInclude Include="boss_A.h" />
     <ClInclude Include="Bullet.h" />
@@ -183,6 +184,7 @@
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="B0_ship.cpp" />
+    <ClCompile Include="B1_ship.cpp" />
     <ClCompile Include="bonus.cpp" />
     <ClCompile Include="boss_A.cpp" />
     <ClCompile Include="Bullet.cpp" />

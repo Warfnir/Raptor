@@ -10,6 +10,9 @@ rocket_explode_animation::rocket_explode_animation(Vector2f pos)
 	sprite.setOrigin(16, 16);
 	sprite.setPosition(pos);
 	end = false;
+	sound.openFromFile("boom.wav");
+	sound.setVolume(10);
+	sound.play();
 }
 
 
@@ -19,7 +22,7 @@ rocket_explode_animation::~rocket_explode_animation()
 
 void rocket_explode_animation::next_frame()
 {
-	if (explosion_time.getElapsedTime().asMilliseconds() > 40)
+	if (explosion_time.getElapsedTime().asMilliseconds() > 50)
 	{
 		IntRect rect = sprite.getTextureRect();
 		if (rect.left >= 224)
