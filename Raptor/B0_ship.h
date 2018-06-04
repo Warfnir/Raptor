@@ -6,7 +6,7 @@ class B0_ship:public EnemyShip
 private:
  
 public:
-	friend class Engine;
+	
 
 	B0_ship(int x, int y, int lvl);
 	~B0_ship();

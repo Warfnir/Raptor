@@ -93,12 +93,12 @@ void MyShip::move()
 {
 	if (left)
 	{
-		vx = -4;
+		vx = -2;
 		sprite.setTextureRect(IntRect(0, 33, 32, 64));
 	}
 	if (right)
 	{
-		vx = 4;
+		vx = 2;
 		sprite.setTextureRect(IntRect(33, 0, 64, 32));
 	}
 	if (left == 0 && right == 0)
@@ -107,11 +107,11 @@ void MyShip::move()
 	}
 	if (up)
 	{
-		vy = -4;
+		vy = -2;
 	}
 	if (down)
 	{
-		vy = 4;
+		vy = 2;
 	}
 	left= right = up = down = 0;
 	sprite.move(vx, vy);

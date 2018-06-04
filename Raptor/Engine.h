@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+#include "Map.h"
 using namespace sf;
 using namespace std;
 
@@ -39,6 +40,7 @@ private:
 	//texts
 	Text myPoints;
 	Font font;
+	Map mapa;
 public:
 	
 	bool window_ok();		//zwraca czy okno dziala

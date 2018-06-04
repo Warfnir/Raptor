@@ -28,7 +28,8 @@ Engine::Engine()
 	//enemies
 	for (int i = 0; i < 5; i++)
 	{
-		enemyShips.push_back(new B0_ship(rand()%800,rand()%600, myShip->getGameLevel()));
+		enemyShips.push_back(new B1_ship(rand()%800,rand()%200-200, myShip->getGameLevel()));
+		cout << enemyShips.size();
 	}
 	enemyShips.push_back(new boss_A(410, -125));
 	
@@ -81,9 +82,13 @@ void Engine::drawAll()
 {
 	//CLEAR WINDOW AND DRAW UPDATED BACKGROUND
 	window.clear();
-	update_backGround();
-	window.draw(bg_sprite1);
-	window.draw(bg_sprite2);
+	//update_backGround();
+	//window.draw(bg_sprite1);
+	//window.draw(bg_sprite2);
+	//Tile tile(30, 30);
+	//window.draw(tile);
+	mapa.draw(window);
+	
 
 
 	//DRAW BULLETS AND CHECK IF NEED TO DELETE
@@ -257,6 +262,13 @@ void Engine::move_All()
 			wsk->move();	
 			wsk->aim(enemyBullet, myShip->getPosition());
 		}	
+		if (typeid(*enemyShips[i]) == typeid(B1_ship))
+		{
+			B1_ship *wsk = dynamic_cast<B1_ship*>(enemyShips[i]);
+			wsk->shoot(enemyBullet);
+			wsk->move();
+			
+		}
 		if (typeid(*enemyShips[i]) == typeid(boss_A))
 		{
 			boss_A*wsk = dynamic_cast<boss_A*>(enemyShips[i]);
@@ -362,10 +374,10 @@ void Engine::start()
 			 window.setView(view);*/
 	
 		move_All();				//przesuwa wszystkie elementy
-		updateNumberOfEnemies();
+		//updateNumberOfEnemies();
 		update_colission();
 		drawAll();				//rysuje wszystkie elementy
 		window.display();		//wyswietla okno
-		//cout << myBullet.size();//wypisuje aktualny stan pocisków
+		cout << enemyShips.size();
 	}
 }
