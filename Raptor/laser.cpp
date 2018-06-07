@@ -2,24 +2,18 @@
 #include "laser.h"
 
 
-laser::laser()
+laser::laser(Vector2f pos, double rotation)
 {
-	/*
-	if (!texture.loadFromFile("bullet.png"))
+	texture.loadFromFile("laser.png");
+	for (int i = 0; i < 63; i++)
 	{
-		cout << "Can't open bullet.png\n";
+		vec.push_back(new Sprite(texture));
 	}
-	texture.setSmooth(true);
-	sprite.setTexture(texture);
-	sprite.setTextureRect(IntRect(0, 0, 32, 32));
-	sprite.rotate(rotate);
-	vx = sin(sprite.getRotation()*3.14 / 180) * 6;
-	vy = -cos(sprite.getRotation()*3.14 / 180) * 6;
-	sprite.setOrigin(16, 16);
-	sprite.setPosition(x, y);
-	R = sqrt(8 * 8 * 2);
-	dmg = 5 * upgLvl;
-	life = true;*/
+	for (int i = 0; i < 63; i++)
+	{
+		vec[i]->rotate(rotation);
+		vec[i]->setPosition(pos.x+i*16,0);
+	}
 }
 
 

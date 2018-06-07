@@ -4,6 +4,7 @@
 
 Engine::Engine()
 {
+	srand(time(NULL));
 	//window set
 	VideoMode vmode(800, 600);
 	Vector2u vec2u(800, 600);
@@ -29,7 +30,7 @@ Engine::Engine()
 	for (int i = 0; i < 5; i++)
 	{
 		enemyShips.push_back(new B1_ship(rand()%800,rand()%200-200, myShip->getGameLevel()));
-		cout << enemyShips.size();
+	//	cout << enemyShips.size();
 	}
 	enemyShips.push_back(new boss_A(410, -125));
 	
@@ -39,6 +40,7 @@ Engine::Engine()
 	myPoints.setStyle(sf::Text::Bold);
 	myPoints.setFillColor(sf::Color::Red);
 	
+	mapa.generateMap();
 }
 
 
@@ -88,6 +90,7 @@ void Engine::drawAll()
 	//Tile tile(30, 30);
 	//window.draw(tile);
 	mapa.draw(window);
+	mapa.mapOutOfWindow();
 	
 
 
@@ -312,7 +315,7 @@ void Engine::updateNumberOfEnemies()
 {
 	if (enemyShips.size() < 10)
 	{
-		enemyShips.push_back(new B0_ship(rand() % 800, -60, myShip->getGameLevel()));
+		enemyShips.push_back(new B1_ship(rand() % 800, -60, myShip->getGameLevel()));
 	}
 }
 
@@ -329,9 +332,18 @@ bool Engine::isCollision(Vector2f a, double Ra, Vector2f b, double Rb)
 //glowna petla gry?
 void Engine::start()
 {
+	Clock fps;
+	int klatki = 0;
 	main_music.play();
 	while (window.isOpen())	//okno jest otwarte
 	{
+		if (fps.getElapsedTime().asMilliseconds() > 1000)
+		{
+			//fps.restart();
+			//cout << klatki << endl;
+			//klatki = 0;
+		}
+		klatki++;
 		while (window.pollEvent(eve))
 		{
 			if (eve.type == Event::Closed)
@@ -374,10 +386,10 @@ void Engine::start()
 			 window.setView(view);*/
 	
 		move_All();				//przesuwa wszystkie elementy
-		//updateNumberOfEnemies();
+		updateNumberOfEnemies();
 		update_colission();
 		drawAll();				//rysuje wszystkie elementy
 		window.display();		//wyswietla okno
-		cout << enemyShips.size();
+		//cout << enemyShips.size();
 	}
 }

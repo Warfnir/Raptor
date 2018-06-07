@@ -13,6 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\Background">
+      <UniqueIdentifier>{85bc618b-fcca-4405-84fa-e1df04fcfbc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Ships">
+      <UniqueIdentifier>{e3579d93-b68b-4151-a374-23866e9f53bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Bullets">
+      <UniqueIdentifier>{c4232fdf-e113-4600-bd98-8a6500925872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Special_effects">
+      <UniqueIdentifier>{b2278875-c6ca-4e68-9444-d1c4b5134d0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Bonuses">
+      <UniqueIdentifier>{03d1df44-c1d7-4314-8f1f-da1c59b3b3d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -76,6 +91,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="B1_ship.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bg_enum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -162,6 +180,81 @@
     </Image>
     <Image Include="bullet_explode.png">
       <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Background\grass_water_down.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\grass_water_left.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\grass_water_leftDown.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\grass_water_leftUp.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\grass_water_right.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\grass_water_rightDown.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\grass_water_rightUp.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\grass_water_up.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\grass5.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\water_grass_leftDown.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\water_grass_leftUp.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\water_grass_rightDown.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\water_grass_rightUp.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Background\water5.png">
+      <Filter>Resource Files\Background</Filter>
+    </Image>
+    <Image Include="Images\Bullets\bullet.png">
+      <Filter>Resource Files\Bullets</Filter>
+    </Image>
+    <Image Include="Images\Bullets\laser.png">
+      <Filter>Resource Files\Bullets</Filter>
+    </Image>
+    <Image Include="Images\Bullets\rocket.png">
+      <Filter>Resource Files\Bullets</Filter>
+    </Image>
+    <Image Include="Images\Bonuses\bonus_health.png">
+      <Filter>Resource Files\Bonuses</Filter>
+    </Image>
+    <Image Include="Images\Bonuses\bonus_points.png">
+      <Filter>Resource Files\Bonuses</Filter>
+    </Image>
+    <Image Include="Images\Bonuses\bonus_shield.png">
+      <Filter>Resource Files\Bonuses</Filter>
+    </Image>
+    <Image Include="Images\Special_effects\bullet_explode.png">
+      <Filter>Resource Files\Special_effects</Filter>
+    </Image>
+    <Image Include="Images\Special_effects\rocket_explode.png">
+      <Filter>Resource Files\Special_effects</Filter>
+    </Image>
+    <Image Include="Images\Ships\enemy.png">
+      <Filter>Resource Files\Ships</Filter>
+    </Image>
+    <Image Include="Images\Ships\Ship.png">
+      <Filter>Resource Files\Ships</Filter>
+    </Image>
+    <Image Include="Images\Ships\ship_bae.png">
+      <Filter>Resource Files\Ships</Filter>
     </Image>
   </ItemGroup>
 </Project>

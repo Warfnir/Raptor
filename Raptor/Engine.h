@@ -10,6 +10,7 @@ private:
 	//friend classes
 	//potrzebne by zawieral wektory
 	//do tych klas
+	
 	friend class MyShip;
 	friend class EnemyShip;
 	friend class Bullet;

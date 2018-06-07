@@ -162,6 +162,7 @@
     <ClInclude Include="animation.h" />
     <ClInclude Include="B0_ship.h" />
     <ClInclude Include="B1_ship.h" />
+    <ClInclude Include="bg_enum.h" />
     <ClInclude Include="bonus.h" />
     <ClInclude Include="boss_A.h" />
     <ClInclude Include="Bullet.h" />
@@ -210,10 +211,35 @@
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Background\grass5.png" />
+    <Image Include="Background\grass_water_down.png" />
+    <Image Include="Background\grass_water_left.png" />
+    <Image Include="Background\grass_water_leftDown.png" />
+    <Image Include="Background\grass_water_leftUp.png" />
+    <Image Include="Background\grass_water_right.png" />
+    <Image Include="Background\grass_water_rightDown.png" />
+    <Image Include="Background\grass_water_rightUp.png" />
+    <Image Include="Background\grass_water_up.png" />
+    <Image Include="Background\water5.png" />
+    <Image Include="Background\water_grass_leftDown.png" />
+    <Image Include="Background\water_grass_leftUp.png" />
+    <Image Include="Background\water_grass_rightDown.png" />
+    <Image Include="Background\water_grass_rightUp.png" />
     <Image Include="bullet.png" />
     <Image Include="bullet_explode.png" />
     <Image Include="b_cloud.png" />
     <Image Include="enemy.png" />
+    <Image Include="Images\Bonuses\bonus_health.png" />
+    <Image Include="Images\Bonuses\bonus_points.png" />
+    <Image Include="Images\Bonuses\bonus_shield.png" />
+    <Image Include="Images\Bullets\bullet.png" />
+    <Image Include="Images\Bullets\laser.png" />
+    <Image Include="Images\Bullets\rocket.png" />
+    <Image Include="Images\Ships\enemy.png" />
+    <Image Include="Images\Ships\Ship.png" />
+    <Image Include="Images\Ships\ship_bae.png" />
+    <Image Include="Images\Special_effects\bullet_explode.png" />
+    <Image Include="Images\Special_effects\rocket_explode.png" />
     <Image Include="Ship.png" />
     <Image Include="ship_bae.png" />
   </ItemGroup>

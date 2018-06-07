@@ -26,7 +26,6 @@ B1_ship::B1_ship(float x, float y, int level)
 	rotation = 180;
 
 	shoot_delay.restart();
-	cout << "ADDED";
 }
 
 
