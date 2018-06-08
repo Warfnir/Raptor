@@ -253,21 +253,27 @@ void Engine::menu()
 				}
 				if (eve.key.code == Keyboard::Key::Return)
 				{
-					if (arrow.getPosition().y == 210)
+					if (arrow.getPosition().y == 255)
 					{
-						
+						okno_menu = false;
+						okno_sklepu - false;
+						okno_walki = true;
 					}
-					else if (arrow.getPosition().y == 240)
+					else if (arrow.getPosition().y == 285)
 					{
-						
+						/*if (load_game())
+						{
+							okno_menu = true;
+							okno_sklepu - false;
+							okno_walki = false;
+						}*/
+						cout << "LAOD";
 					}
-					else if (arrow.getPosition().y == 270)
+					else if (arrow.getPosition().y == 315)
 					{
-						
-					}
-					else if (arrow.getPosition().y == 300)
-					{
-						
+						okno_menu = false;
+						okno_sklepu - false;
+						okno_walki = false;
 					}
 				}
 			}
@@ -443,7 +449,6 @@ void Engine::drawAll()
 	//DRAW OUR SHIP
 	if (myShip->getLife() <= 0)
 	{
-		cout << "Przegrales\n";
 		//clear_memory();
 		Clock koniec_gry;
 		koniec_gry.restart();
@@ -457,11 +462,13 @@ void Engine::drawAll()
 		okno_walki = false;
 		while (koniec_gry.getElapsedTime().asSeconds() < 3)
 		{
-			cout << "lol?\n";
 			window.clear(Color::Black);
 			window.draw(end_game);
 			window.display();
 		}
+		okno_menu = true;
+		okno_sklepu = false;
+		okno_walki = false;
 	}
 	window.draw(*myShip);
 
@@ -658,7 +665,7 @@ void Engine::start()
 	int klatki = 0;
 	main_music.play();
 	okno_walki = true;
-	wave = 2;
+	wave = myShip->getGameLevel();
 	next_wave();
 	while (okno_walki)	//okno jest otwarte
 	{

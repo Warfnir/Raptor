@@ -21,27 +21,34 @@ void game::gMain()
 	Engine engine;	//tworzy silnik
 	while (!quit)
 	{
-		if (menu)
+		if (!menu && !sklep && !walka)
 		{
-			engine.menu();
+			quit = true;
 		}
-		else if (walka)
+		else
 		{
-			cout << "walka";
-			engine.start(); //engine zawiera petle gry, tu jest aktualnie walka
-			walka = false;
-			sklep = engine.ifShop();
-			menu = engine.ifMenu();
-			cout << "Po walce";
-		}
-		else if(sklep)
-		{
-			cout << "sklep";
-			engine.open_item_shop();
-			walka = engine.ifFight();
-			menu = engine.ifMenu();
-			sklep = false;
-			cout << "po sklepie";
+			if (menu)
+			{
+				engine.menu(); //menu gry
+				walka = engine.ifFight();
+				sklep = engine.ifShop();
+				menu = false;
+			}
+			else if (walka)
+			{
+				engine.start(); //engine zawiera petle gry, tu jest aktualnie walka
+				walka = false;
+				sklep = engine.ifShop();
+				menu = engine.ifMenu();
+				cout << "Po walce\n";
+			}
+			else if (sklep)
+			{
+				engine.open_item_shop();	//sklep
+				walka = engine.ifFight();
+				menu = engine.ifMenu();
+				sklep = false;
+			}
 		}
 	}
 }

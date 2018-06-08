@@ -102,14 +102,15 @@ void boss_A::shoot(vector<Bullet*> &vec)
 		if (bullets_counter > 9)
 		{
 			attack_B = false;
-			attack_C = true;
+			attack_A = true;
 			bullets_counter = 0;
 		}
 	}
+	/*
 	else if(attack_C && shoot_delay.getElapsedTime().asMilliseconds()>400)
 	{
 
-	}
+	}*///niegotowy atak
 }
 void boss_A::aim(vector<Bullet*> &vec, Vector2f pos)
 {
