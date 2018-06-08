@@ -17,5 +17,6 @@ public:
 	bool getOut();
 	int getPoints();
 	double getLife();
+	void crash();
 };
 

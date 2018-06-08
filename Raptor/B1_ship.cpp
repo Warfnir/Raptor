@@ -2,7 +2,7 @@
 #include "B1_ship.h"
 
 
-B1_ship::B1_ship(float x, float y, int level)
+B1_ship::B1_ship(float x, float y, int lvl)
 {
 	texture.loadFromFile("enemy.png");
 	sprite.setTexture(texture);
@@ -12,9 +12,10 @@ B1_ship::B1_ship(float x, float y, int level)
 	R = sqrt(8 * 8 * 2);
 
 	
-	SHIELD = 20 * level;
-	HP = 10 * level;
-	points = 10 * level;
+	SHIELD = 20 * lvl;
+	HP = 10 * lvl;
+	points = 10 * lvl;
+	level = lvl;
 
 	bul1 = true;
 	bul2 = false;
@@ -26,6 +27,7 @@ B1_ship::B1_ship(float x, float y, int level)
 	rotation = 180;
 
 	shoot_delay.restart();
+	
 }
 
 

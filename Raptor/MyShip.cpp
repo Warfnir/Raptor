@@ -22,14 +22,13 @@ MyShip::MyShip()
 	R = sqrt(8*8*2);
 
 	//HP SHIELDS POINTS
+	maxHp = 100;
 	HP = 100;
 	SHIELD = 100;
-	points = 0;
+	points = 3000;
 	game_lvl = 1;
 
 	//bullets
-	laser_unlocked = false;
-	rocket_unclocked = false;
 	laser_upg = 0;
 	rocket_upg = 0;
 	bullet_upg = 1;
@@ -78,7 +77,7 @@ void MyShip::shoot(vector<Bullet*> &vec)
 		vec.push_back(new standard_bullet(x + 4, y - 16,0,bullet_upg));
 		shoot_delay.restart();
 	}
-	if (rocket_delay.getElapsedTime().asMilliseconds() > 500)
+	if (rocket_delay.getElapsedTime().asMilliseconds() > 500 && rocket_upg>0)
 	{
 		float x = sprite.getPosition().x;
 		float y = sprite.getPosition().y;
@@ -119,11 +118,6 @@ void MyShip::move()
 	
 }
 
-void draw()
-{
-
-}
-
 void MyShip::getData()
 {
 	cout << this->vx << "  " << this->vy<<endl;
@@ -152,4 +146,71 @@ void MyShip::gotHit(int dmg)
 int MyShip::getGameLevel()
 {
 	return game_lvl;
+}
+
+int MyShip::getLife()
+{
+	return HP;
+}
+
+void MyShip::nextLevel()
+{
+	game_lvl++;
+}
+
+int MyShip::getBulletLevel()
+{
+	return bullet_upg;
+}
+int MyShip::getRocketLevel()
+{
+	return rocket_upg;
+}
+int MyShip::getMaxHp()
+{
+	return maxHp;
+
+}
+int MyShip::getActHp()
+{
+	return HP;
+
+}
+
+void MyShip::rocketUp()
+{
+	points -= rocket_upg * 200 + 300;
+	rocket_upg++;
+}
+void MyShip::bulletUp()
+{
+	points -= bullet_upg * 200;
+	bullet_upg++;
+}
+void MyShip::maxHpUp()
+{
+	points -= maxHp *2;
+	maxHp += 20;
+}
+void MyShip::heal()
+{
+	points -= maxHp-HP + 50;
+	HP = maxHp;
+}
+
+void MyShip::bonusPoint(int bonus)
+{
+	points += bonus;
+}
+void MyShip::bonusHealth(int bonus)
+{
+	HP += bonus;
+	if (HP > maxHp)
+	{
+		HP = maxHp;
+	}
+}
+void MyShip::bonusShield(int bonus)
+{
+	//shield bonus
 }

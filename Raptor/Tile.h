@@ -43,7 +43,7 @@ public:
 
 	void setPos(float x, float y);
 	Sprite getSprite();
-	void move(double y);
+	void move();
 	Vector2f getPos();
 };
 

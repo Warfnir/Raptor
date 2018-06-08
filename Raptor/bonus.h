@@ -6,8 +6,8 @@ using namespace std;
 class bonus :public object
 {
 private:
-	bool bonusHP;
-	bool bonusSHield;
+	int bonusHP;
+	int bonusSHield;
 	int bonusPoints;
 	Clock nextFrame;
 
@@ -19,6 +19,7 @@ public:
 	void changeFrame();
 	bool getLife();
 	void outOfWindow();
+	void giveBonus(MyShip &ship);
 
 	bonus(Vector2f pos, int type, int level);
 	~bonus();

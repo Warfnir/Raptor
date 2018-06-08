@@ -6,10 +6,14 @@
 class game
 {
 private:
-	bool game_on; //dopoki gra jest zalaczona
+	bool quit;
+	bool walka;
+	bool sklep;
+	bool menu;
 protected:
 	
 public:
+	
 	game();
 	~game();
 

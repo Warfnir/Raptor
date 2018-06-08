@@ -22,5 +22,6 @@ public:
 	int generate_next_tile(Tile &left, Tile &down);	//porownuje zawartosci z lewej i prawej strony, zwraca nr potrzebnej plytki
 	int generate_next_tile(Tile &down);	//porownuje zawartosci z prawej strony, zwraca nr potrzebnej plytki
 	void generateMap();
+	void update();
 };
 

@@ -9,13 +9,11 @@ private:
 	double cash;
 	int points;
 	int game_lvl;
+	int maxHp;
 
 	int bullet_upg;
 	int rocket_upg;
 	int laser_upg;
-
-	bool rocket_unclocked;
-	bool laser_unlocked;
 
 	Clock rocket_delay;
 public:
@@ -30,10 +28,25 @@ public:
 	void grantPoints(int pt);
 	int getPoints();
 	void gotHit(int dmg);
-
+	int getLife();
 	bool left, right, up, down;
+	void nextLevel();
+	int getBulletLevel();
+	int getRocketLevel();
+	int getMaxHp();
+	int getActHp();
+
+	void rocketUp();
+	void bulletUp();
+	void maxHpUp();
+	void heal();
+
+	void bonusPoint(int bonus);
+	void bonusHealth(int bonus);
+	void bonusShield(int bonus);
 
 	int getGameLevel();
+
 	
 
 	MyShip();

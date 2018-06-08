@@ -316,9 +316,9 @@ Sprite Tile::getSprite()
 	return sprite;
 }
 
-void Tile::move(double y)
+void Tile::move()
 {
-	sprite.move(0, y);
+	sprite.move(0,1);
 }
 
 Vector2f Tile::getPos()

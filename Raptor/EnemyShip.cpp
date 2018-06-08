@@ -20,6 +20,11 @@ void EnemyShip::outOfWindow()
 	}
 }
 
+void EnemyShip::crash()
+{
+	HP = 0;
+}
+
 bool EnemyShip::getOut()
 {
 	return out;

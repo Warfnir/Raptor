@@ -177,6 +177,7 @@
     <ClInclude Include="rocket.h" />
     <ClInclude Include="rocket_explode_animation.h" />
     <ClInclude Include="Ship.h" />
+    <ClInclude Include="shop.h" />
     <ClInclude Include="standard_bullet.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="rocket.cpp" />
     <ClCompile Include="rocket_explode_animation.cpp" />
     <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="shop.cpp" />
     <ClCompile Include="standard_bullet.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

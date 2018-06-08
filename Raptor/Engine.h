@@ -20,9 +20,7 @@ private:
 
 	RenderWindow window;
 	Event eve;
-	Texture bg_texture;
-	Sprite bg_sprite1;
-	Sprite bg_sprite2;
+	
 	//Map mapa;		MAPA NIE DZIALA
 	//wektory do statkow i pociskow
 	//-----------------------------
@@ -42,21 +40,31 @@ private:
 	Text myPoints;
 	Font font;
 	Map mapa;
+
+	//elementy rozgrywki
+	int wave;
+	bool okno_menu;
+	bool okno_sklepu;
+	bool okno_walki;
+
 public:
-	
+	bool ifShop();
+	bool ifMenu();
+	bool ifFight();
 	bool window_ok();		//zwraca czy okno dziala
-	void display_window();	//wyswietla okno
+	void menu();
+	//------------------------------------------------------------------------------------------------
+	void open_item_shop();	//otwiera sklep po zakonczonej walce
+
+	//------------------------------------------------------------------------------------------------
+	void start();
+	void next_wave();		//generuje kolejnych przeciwników
 	bool isCollision(Vector2f a, double Ra, Vector2f b, double Rb);		//zwraca czy obiekty koliduj¹
 	void drawAll();			//rysuje wszystkich na ekranie
 	void move_All();		//przesuwa obiekty
 	void update_colission();
-	RenderWindow* getWindow();
-	Event getEvent();
-	void start();
-	void update_backGround();
-	void check_bullets();
 	void updateNumberOfEnemies();
-	//------
+	//-------------------------------------------------------------------------------------------------
 	Engine();
 	~Engine();
 };

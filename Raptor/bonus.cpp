@@ -7,28 +7,28 @@ bonus::bonus(Vector2f pos, int type, int level)
 	if (type < 7)
 	{
 		bonusPoints = level * 100;
-		bonusHP = false;
-		bonusSHield = false;
+		bonusHP = 0;
+		bonusSHield = 0;
 		texture.loadFromFile("bonus_points.png");
 	}
 	else if (type > 9)
 	{
 		bonusPoints = 0;
-		bonusHP = true;
-		bonusSHield = false;
+		bonusHP = level *20;
+		bonusSHield = 0;
 		texture.loadFromFile("bonus_health.png");
 	}
 	else
 	{
 		bonusPoints = 0;
-		bonusHP = false;
-		bonusSHield = true;
+		bonusHP = 0;
+		bonusSHield = level * 50;
 		texture.loadFromFile("bonus_shield.png");
 	}
 	sprite.setTexture(texture);
 	sprite.setTextureRect(IntRect(0, 0, 32, 32));
 	sprite.setPosition(pos);
-	R = sqrt(16 * 16 * 2);
+	R = sqrt(18 * 18 * 2);
 	vx = 0;
 	vy = 1;
 	life = true;
@@ -81,4 +81,11 @@ void bonus::outOfWindow()
 bool bonus::getLife()
 {
 	return life;
+}
+
+void bonus::giveBonus(MyShip &ship)
+{
+	ship.bonusPoint(bonusPoints);
+	ship.bonusHealth(bonusHP);
+	ship.bonusShield(bonusSHield);
 }

@@ -27,7 +27,6 @@ void Map::draw(RenderWindow &window)
 		for (int j = 0; j < mat[j].size(); j++)
 		{
 			window.draw(*mat[i][j]);
-			mat[i][j]->move(0.3);
 		}
 	}
 	
@@ -40,7 +39,7 @@ void Map::move()
 	{
 		for (int j = 0; j < mat[j].size(); j++)
 		{
-			mat[i][j]->move(1);
+			mat[i][j]->move();
 		}
 	}
 }
