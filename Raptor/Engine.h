@@ -51,19 +51,22 @@ public:
 	bool ifShop();
 	bool ifMenu();
 	bool ifFight();
+	//-------------------------------------------------------------------------------------------------
 	bool window_ok();		//zwraca czy okno dziala
+	//-------------------------------------------------------------------------------------------------
 	void menu();
+	void load();
 	//------------------------------------------------------------------------------------------------
 	void open_item_shop();	//otwiera sklep po zakonczonej walce
-
+	void save();
 	//------------------------------------------------------------------------------------------------
 	void start();
 	void next_wave();		//generuje kolejnych przeciwników
 	bool isCollision(Vector2f a, double Ra, Vector2f b, double Rb);		//zwraca czy obiekty koliduj¹
 	void drawAll();			//rysuje wszystkich na ekranie
 	void move_All();		//przesuwa obiekty
-	void update_colission();
-	void updateNumberOfEnemies();
+	void update_colission();//sprawdza wszytskie kolizje
+	void updateNumberOfEnemies(); //dla celow testowych, dodaje nowych przeciwnikow
 	//-------------------------------------------------------------------------------------------------
 	Engine();
 	~Engine();

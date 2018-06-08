@@ -25,7 +25,7 @@ MyShip::MyShip()
 	maxHp = 100;
 	HP = 100;
 	SHIELD = 100;
-	points = 3000;
+	points = 0;
 	game_lvl = 1;
 
 	//bullets
@@ -213,4 +213,25 @@ void MyShip::bonusHealth(int bonus)
 void MyShip::bonusShield(int bonus)
 {
 	//shield bonus
+}
+
+void MyShip::setStats(int gmLvl, int maxHitPoints, int actHitPoints, int actPoints, int bulLvl, int rockLvl, int actShields, int lasLvl)
+{
+	maxHp = maxHitPoints;
+		HP = actHitPoints;
+	SHIELD = actShields;
+	points = actPoints;
+	game_lvl = gmLvl;
+	laser_upg = lasLvl;
+	rocket_upg = rockLvl;
+	bullet_upg = bulLvl;
+}
+
+int MyShip::getLaserLevel()
+{
+	return laser_upg;
+}
+int MyShip::getActShield()
+{
+	return SHIELD;
 }

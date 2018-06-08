@@ -6,7 +6,6 @@ using namespace std;
 class MyShip : public Ship
 {
 private:
-	double cash;
 	int points;
 	int game_lvl;
 	int maxHp;
@@ -14,7 +13,7 @@ private:
 	int bullet_upg;
 	int rocket_upg;
 	int laser_upg;
-
+	bool left, right, up, down;
 	Clock rocket_delay;
 public:
 	friend class Engine;
@@ -29,23 +28,32 @@ public:
 	int getPoints();
 	void gotHit(int dmg);
 	int getLife();
-	bool left, right, up, down;
-	void nextLevel();
+
+
+	void nextLevel();//zwieksza poziom - nastepna iteracja
+
+	//zwracata wartosci podstawowych statystyk
 	int getBulletLevel();
 	int getRocketLevel();
+	int getLaserLevel();
 	int getMaxHp();
 	int getActHp();
+	int getActShield();
 
-	void rocketUp();
-	void bulletUp();
-	void maxHpUp();
-	void heal();
+	void rocketUp();//zwieksza obrazenia rakiet
+	void bulletUp();//zwieksza obrazenia podstawowego ataku
+	void maxHpUp();	//zwieksza max hp
+	void heal();	//leczy do max hp
 
-	void bonusPoint(int bonus);
-	void bonusHealth(int bonus);
-	void bonusShield(int bonus);
+	void bonusPoint(int bonus);	//dodaje bonusowe punty
+	void bonusHealth(int bonus);//reneneruje zycie
+	void bonusShield(int bonus);//zwieksza tarcze
 
-	int getGameLevel();
+	
+	int getGameLevel();			//zwraca aktualny poziom gry - iteracje
+
+	//do wczytywania gry
+	void setStats(int gmLvl, int maxHitPoints, int actHitPoints, int actPoints, int bulLvl, int rockLvl, int actShields, int lasLvl);
 
 	
 

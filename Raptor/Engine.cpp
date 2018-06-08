@@ -136,7 +136,7 @@ void Engine::open_item_shop()
 					}
 					else if (arrow.getPosition().y == 360)
 					{
-						//save game save_game();
+						save();
 					}
 					else if (arrow.getPosition().y == 390)
 					{
@@ -261,13 +261,8 @@ void Engine::menu()
 					}
 					else if (arrow.getPosition().y == 285)
 					{
-						/*if (load_game())
-						{
-							okno_menu = true;
-							okno_sklepu - false;
-							okno_walki = false;
-						}*/
-						cout << "LAOD";
+						load();
+						cout << "LOAD";
 					}
 					else if (arrow.getPosition().y == 315)
 					{
@@ -293,6 +288,61 @@ void Engine::menu()
 	}
 }
 
+
+void Engine::save()
+{
+	fstream file;
+	string path = "save.txt";
+	file.open("save.txt", fstream::out);
+	try
+	{
+		if (file.is_open())
+		{
+			
+			file << myShip->getGameLevel() <<endl<< myShip->getMaxHp() << endl << myShip->getActHp() << endl << myShip->getActShield() << endl << myShip->getPoints() << endl << myShip->getBulletLevel() << endl << myShip->getRocketLevel() << endl << myShip->getLaserLevel();
+			//usatwienia statku
+		}
+		else
+		{
+			path.append(" - check if file exists.");
+			throw path;
+		}
+
+	}
+	catch (string str)
+	{
+		cout << "There's problem with:" << str;
+	}
+}
+
+void Engine::load()
+{
+	fstream file;
+	string path = "save.txt";
+	file.open("save.txt", fstream::in);
+	try
+	{
+		if (file.is_open())
+		{
+			int laserLvl, rocketLvl, bulletLvl, maxLife, actLife, shield, points, gameLvl;
+			file >> gameLvl >> maxLife >> actLife >> shield >> points >> bulletLvl >> rocketLvl >> laserLvl;
+			//usatwienia statku
+			okno_menu = false;
+			okno_walki = false;
+			okno_sklepu = true;
+		}
+		else
+		{
+			path.append(" - check if file exists.");
+			throw path;
+		}
+
+	}
+	catch (string str)
+	{
+		cout << "There's problem with:" << str;
+	}
+}
 //tworzy nowa fale przeciwnikow
 void Engine::next_wave()
 {
