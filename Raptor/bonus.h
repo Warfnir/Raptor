@@ -21,7 +21,7 @@ public:
 	void outOfWindow();
 	void giveBonus(MyShip &ship);
 
-	bonus(Vector2f pos, int type, int level);
+	bonus(Vector2f pos, int type, int level, Texture &texture);
 	~bonus();
 };
 

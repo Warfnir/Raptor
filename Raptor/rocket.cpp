@@ -2,12 +2,8 @@
 #include "rocket.h"
 
 
-rocket::rocket(float x, float y, float rotate, int upgLvl)
+rocket::rocket(float x, float y, float rotate, int upgLvl, Texture &texture)
 {
-	if (!texture.loadFromFile("rocket.png"))
-	{
-		cout << "Can't open rocket.png\n";
-	}
 	texture.setSmooth(true);
 	sprite.setTexture(texture);
 	sprite.setTextureRect(IntRect(0, 0, 32, 32));

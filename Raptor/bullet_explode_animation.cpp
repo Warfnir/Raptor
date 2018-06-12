@@ -2,9 +2,8 @@
 #include "bullet_explode_animation.h"
 
 
-bullet_explode_animation::bullet_explode_animation(Vector2f pos)
+bullet_explode_animation::bullet_explode_animation(Vector2f pos, Texture &texture)
 {
-	texture.loadFromFile("bullet_explode.png");
 	sprite.setTexture(texture);
 	sprite.setTextureRect(IntRect(0, 0, 16, 16));
 	sprite.setPosition(pos);

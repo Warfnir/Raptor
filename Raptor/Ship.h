@@ -13,7 +13,7 @@ protected:
 
 public:
 	
-	virtual void shoot(vector<Bullet*> &vec) = 0;
+	virtual void shoot(vector<Bullet*> &vec, Texture &texture) = 0;
 	virtual void move() = 0;
 	virtual void outOfWindow()=0;
 	void gotHit(double dmg);

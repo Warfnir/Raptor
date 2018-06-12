@@ -2,9 +2,8 @@
 #include "laser.h"
 
 
-laser::laser(Vector2f pos, double rotation)
+laser::laser(Vector2f pos, double rotation, Texture &texture)
 {
-	texture.loadFromFile("laser.png");
 	for (int i = 0; i < 63; i++)
 	{
 		vec.push_back(new Sprite(texture));

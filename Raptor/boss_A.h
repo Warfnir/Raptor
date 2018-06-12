@@ -18,10 +18,11 @@ private:
 	double maxV;
 	float rotation;
 public:
-	boss_A(float x, float y);
+	boss_A(float x, float y, Texture &texture);
 	~boss_A();
 
-	void shoot(vector<Bullet*> &vec);	//strzal 
+	void shoot(vector<Bullet*> &vec, Texture &texture);	//strzal 
+	void shoot2(vector<Bullet*> &vec, Texture &bul_texture, Texture &roc_texture);
 	void aim(vector<Bullet*> &vec, Vector2f pos);	//sprawdza polozenie naszego statku i w odpowiednim momencie strzela
 	void move();
 	void trace(Vector2f pos); //require position of the enemy

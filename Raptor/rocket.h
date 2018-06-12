@@ -5,7 +5,7 @@ using namespace std;
 class rocket:public Bullet
 {
 public:
-	rocket(float x, float y, float rotate, int upgLvl);
+	rocket(float x, float y, float rotate, int upgLvl, Texture &texture);
 	~rocket();
 };
 

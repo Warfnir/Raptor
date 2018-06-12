@@ -2,17 +2,17 @@
 #include "MyShip.h"
 
 
-MyShip::MyShip()
+MyShip::MyShip(Texture &tex)
 {
 	//load texture and set sprite
-	if (!texture.loadFromFile("ship_bae.png"))
+	/*if (!texture.loadFromFile("ship_bae.png"))
 	{
 		cout << "Can't open Ship.png\n";
-	}
-	texture.setSmooth(true);
-	sprite.setTexture(texture);
+	}*/
+	tex.setSmooth(true);
+	sprite.setTexture(tex);
 	sprite.setTextureRect(IntRect(0, 0, 32, 32));
-	sprite.setPosition(380, 300);
+	sprite.setPosition(384, 500);
 	vx = 0.0f;
 	vy = 0.0f;
 	sprite.setOrigin(16, 16);
@@ -67,25 +67,28 @@ Sprite MyShip::getSprite()
 }
 
 /////////////////////////////////////////
-void MyShip::shoot(vector<Bullet*> &vec)
+void MyShip::shoot(vector<Bullet*> &vec, Texture &texture)
+{
+
+}
+void MyShip::shoot2(vector<Bullet*> &vec, Texture &bul_texture, Texture &roc_texture)
 {
 	if (shoot_delay.getElapsedTime().asMilliseconds() > 150)
 	{
 		float x = sprite.getPosition().x;
 		float y = sprite.getPosition().y;
-		vec.push_back(new standard_bullet(x - 12, y - 16,0, bullet_upg));
-		vec.push_back(new standard_bullet(x + 4, y - 16,0,bullet_upg));
+		vec.push_back(new standard_bullet(x - 12, y - 16, 0, bullet_upg, bul_texture));
+		vec.push_back(new standard_bullet(x + 4, y - 16, 0, bullet_upg, bul_texture));
 		shoot_delay.restart();
 	}
 	if (rocket_delay.getElapsedTime().asMilliseconds() > 500 && rocket_upg>0)
 	{
 		float x = sprite.getPosition().x;
 		float y = sprite.getPosition().y;
-		vec.push_back(new rocket(x - 12, y - 16, 0, bullet_upg));
+		vec.push_back(new rocket(x - 12, y - 16, 0, bullet_upg, roc_texture));
 		rocket_delay.restart();
 	}
 }
-
 /////////////////////////////////////////
 
 void MyShip::move()
@@ -215,17 +218,6 @@ void MyShip::bonusShield(int bonus)
 	//shield bonus
 }
 
-void MyShip::setStats(int gmLvl, int maxHitPoints, int actHitPoints, int actPoints, int bulLvl, int rockLvl, int actShields, int lasLvl)
-{
-	maxHp = maxHitPoints;
-		HP = actHitPoints;
-	SHIELD = actShields;
-	points = actPoints;
-	game_lvl = gmLvl;
-	laser_upg = lasLvl;
-	rocket_upg = rockLvl;
-	bullet_upg = bulLvl;
-}
 
 int MyShip::getLaserLevel()
 {
@@ -234,4 +226,38 @@ int MyShip::getLaserLevel()
 int MyShip::getActShield()
 {
 	return SHIELD;
+}
+
+void MyShip::move_back()
+{
+	sprite.setPosition(384, 500);
+}
+
+void MyShip::reset()
+{
+	//POSITION
+	sprite.setPosition(384, 500);
+	//HP SHIELDS POINTS
+	maxHp = 100;
+	HP = 100;
+	SHIELD = 100;
+	points = 0;
+	game_lvl = 1;
+
+	//bullets
+	laser_upg = 0;
+	rocket_upg = 0;
+	bullet_upg = 1;
+}
+
+void MyShip::setStats(int gameLv, int maxLife, int actLife, int shield, int pt, int bulletLvl, int rocketLvl, int laserLvl)
+{
+	game_lvl = gameLv;
+	maxHp = maxLife;
+	HP = actLife;
+	SHIELD = shield;
+	points = pt;
+	bullet_upg = bulletLvl;
+	rocket_upg = rocketLvl;
+	laser_upg = laserLvl;
 }

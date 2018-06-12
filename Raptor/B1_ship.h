@@ -13,12 +13,12 @@ private:
 
 	double rotation;
 public:
-	B1_ship(float x , float y, int lvl);
+	B1_ship(float x , float y, int lvl, Texture &texture);
 	~B1_ship();
 
 
 
-	void shoot(vector<Bullet*> &vec);	//strzal 
+	void shoot(vector<Bullet*> &vec, Texture &texture);	//strzal 
 	void move();	//sciezka statku
 
 };

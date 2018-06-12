@@ -40,7 +40,6 @@ void game::gMain()
 				walka = false;
 				sklep = engine.ifShop();
 				menu = engine.ifMenu();
-				cout << "Po walce\n";
 			}
 			else if (sklep)
 			{

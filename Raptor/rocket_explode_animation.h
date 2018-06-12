@@ -12,7 +12,7 @@ public:
 	void next_frame();
 	bool end_animation();
 public:
-	rocket_explode_animation(Vector2f pos);
+	rocket_explode_animation(Vector2f pos, Texture &texture);
 	~rocket_explode_animation();
 };
 

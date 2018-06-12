@@ -2,9 +2,8 @@
 #include "B1_ship.h"
 
 
-B1_ship::B1_ship(float x, float y, int lvl)
+B1_ship::B1_ship(float x, float y, int lvl, Texture &texture)
 {
-	texture.loadFromFile("enemy.png");
 	sprite.setTexture(texture);
 	sprite.setTextureRect(IntRect(62, 110, 32, 32));
 	sprite.setOrigin(16, 16);
@@ -35,29 +34,29 @@ B1_ship::~B1_ship()
 {
 }
 
-void  B1_ship::shoot(vector<Bullet*> &vec)
+void  B1_ship::shoot(vector<Bullet*> &vec, Texture &texture)
 {
 	if (shoot_delay.getElapsedTime().asMilliseconds() > 1650 && bul1)
 	{
-		vec.push_back(new standard_bullet(sprite.getPosition().x, sprite.getPosition().y, 180, level));
+		vec.push_back(new standard_bullet(sprite.getPosition().x, sprite.getPosition().y, 180, level,texture));
 		bul1 = false;
 		bul2 = true;
 	}
 	if (shoot_delay.getElapsedTime().asMilliseconds() > 1700 && bul2)
 	{
-		vec.push_back(new standard_bullet(sprite.getPosition().x, sprite.getPosition().y, 180, level));
+		vec.push_back(new standard_bullet(sprite.getPosition().x, sprite.getPosition().y, 180, level,texture));
 		bul2 = false;
 		bul3 = true;
 	}
 	if (shoot_delay.getElapsedTime().asMilliseconds() > 1750 && bul3)
 	{
-		vec.push_back(new standard_bullet(sprite.getPosition().x, sprite.getPosition().y, 180, level));
+		vec.push_back(new standard_bullet(sprite.getPosition().x, sprite.getPosition().y, 180, level,texture));
 		bul3 = false;
 		bul4 = true;
 	}
 	if (shoot_delay.getElapsedTime().asMilliseconds() > 1800 && bul4)
 	{
-		vec.push_back(new standard_bullet(sprite.getPosition().x, sprite.getPosition().y, 180, level));
+		vec.push_back(new standard_bullet(sprite.getPosition().x, sprite.getPosition().y, 180, level,texture));
 		bul4 = false;
 		bul1 = true;
 		shoot_delay.restart();

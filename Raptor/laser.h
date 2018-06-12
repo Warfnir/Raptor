@@ -8,7 +8,7 @@ private:
 	vector <Sprite*> vec;
 public:
 	
-	laser(Vector2f pos, double rotation);
+	laser(Vector2f pos, double rotation, Texture &texture);
 	~laser();
 };
 

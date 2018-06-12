@@ -6,7 +6,6 @@ using namespace std;
 class object:public Drawable
 {
 protected:
-	Texture texture;	//textura
 	Sprite sprite;		//sprite
 	double R;
 	double vx;

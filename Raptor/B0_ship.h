@@ -8,11 +8,11 @@ private:
 public:
 	
 
-	B0_ship(int x, int y, int lvl);
+	B0_ship(int x, int y, int lvl, Texture &texture);
 	~B0_ship();
 
-	void shoot(vector<Bullet*> &vec);	//strzal 
-	void aim(vector<Bullet*> &vec, Vector2f pos);	//sprawdza polozenie naszego statku i w odpowiednim momencie strzela
+	void shoot(vector<Bullet*> &vec, Texture &texture);	//strzal 
+	void aim(vector<Bullet*> &vec, Vector2f pos, Texture &texture);	//sprawdza polozenie naszego statku i w odpowiednim momencie strzela
 	void move();
 	void trace(Vector2f pos); //require position of the enemy
 };

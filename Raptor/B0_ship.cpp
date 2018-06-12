@@ -2,14 +2,10 @@
 #include "B0_ship.h"
 
 
-B0_ship::B0_ship(int x, int y,int lvl)
+B0_ship::B0_ship(int x, int y,int lvl, Texture &texture)
 {
 	way = 0;
 	level = lvl;
-	if (!texture.loadFromFile("enemy.png"))
-	{
-		cout << "Can't load enemy.png\n";
-	}
 	sprite.setTexture(texture);
 	sprite.setOrigin(16, 16);
 	sprite.setTextureRect(IntRect(0,110,32,32));
@@ -20,21 +16,21 @@ B0_ship::B0_ship(int x, int y,int lvl)
 	HP = 50 *level;
 }
 
-void B0_ship::shoot(vector<Bullet*> &vec)
+void B0_ship::shoot(vector<Bullet*> &vec, Texture &texture)
 {
 	if (shoot_delay.getElapsedTime().asMilliseconds() > 2000)
 	{
-		vec.push_back(new standard_bullet(sprite.getPosition().x+5, sprite.getPosition().y+5,180,level));
+		vec.push_back(new standard_bullet(sprite.getPosition().x+5, sprite.getPosition().y+5,180,level,texture));
 		shoot_delay.restart();
 	}
 }
 
 
-void B0_ship::aim(vector<Bullet*> &vec, Vector2f pos)
+void B0_ship::aim(vector<Bullet*> &vec, Vector2f pos,Texture &texture)
 {
 	if ((sprite.getPosition().x <(pos.x + 10) || sprite.getPosition().x >(pos.x - 10)) && sprite.getPosition().y < pos.y)
 	{
-		shoot(vec);
+		shoot(vec, texture);
 	}
 }
 

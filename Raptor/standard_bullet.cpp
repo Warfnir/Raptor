@@ -2,12 +2,9 @@
 #include "standard_bullet.h"
 
 
-standard_bullet::standard_bullet(float x, float y, float rotate, int upgLvl)
+standard_bullet::standard_bullet(float x, float y, float rotate, int upgLvl, Texture &texture)
 {
-	if (!texture.loadFromFile("bullet.png"))
-	{
-		cout << "Can't open bullet.png\n";
-	}
+
 	texture.setSmooth(true);
 	sprite.setTexture(texture);
 	sprite.setTextureRect(IntRect(0, 0, 32, 32));

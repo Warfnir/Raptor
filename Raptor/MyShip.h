@@ -18,7 +18,8 @@ private:
 public:
 	friend class Engine;
 	
-	void shoot(vector<Bullet*> &vec);
+	void shoot(vector<Bullet*> &vec, Texture &texture);
+	void shoot2(vector<Bullet*> &vec, Texture &bul_texture, Texture &roc_texture);
 	void move();
 	Sprite getSprite();
 	void getData();
@@ -53,11 +54,11 @@ public:
 	int getGameLevel();			//zwraca aktualny poziom gry - iteracje
 
 	//do wczytywania gry
-	void setStats(int gmLvl, int maxHitPoints, int actHitPoints, int actPoints, int bulLvl, int rockLvl, int actShields, int lasLvl);
+	void move_back();
+	void reset();
+	void setStats(int gameLv, int maxLife, int actLife, int shield, int pt, int bulletLvl, int rocketLvl, int laserLvl);
 
-	
-
-	MyShip();
+	MyShip(Texture &tex);
 	~MyShip();
 };
 

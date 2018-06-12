@@ -2,28 +2,25 @@
 #include "bonus.h"
 
 
-bonus::bonus(Vector2f pos, int type, int level)
+bonus::bonus(Vector2f pos, int type, int level, Texture &texture)
 {
 	if (type < 7)
 	{
 		bonusPoints = level * 100;
 		bonusHP = 0;
 		bonusSHield = 0;
-		texture.loadFromFile("bonus_points.png");
 	}
 	else if (type > 9)
 	{
 		bonusPoints = 0;
 		bonusHP = level *20;
 		bonusSHield = 0;
-		texture.loadFromFile("bonus_health.png");
 	}
 	else
 	{
 		bonusPoints = 0;
 		bonusHP = 0;
 		bonusSHield = level * 50;
-		texture.loadFromFile("bonus_shield.png");
 	}
 	sprite.setTexture(texture);
 	sprite.setTextureRect(IntRect(0, 0, 32, 32));

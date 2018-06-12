@@ -21,6 +21,7 @@ private:
 	RenderWindow window;
 	Event eve;
 	
+	TextureSet* textureSet;
 	//Map mapa;		MAPA NIE DZIALA
 	//wektory do statkow i pociskow
 	//-----------------------------
@@ -68,6 +69,8 @@ public:
 	void update_colission();//sprawdza wszytskie kolizje
 	void updateNumberOfEnemies(); //dla celow testowych, dodaje nowych przeciwnikow
 	//-------------------------------------------------------------------------------------------------
+	void clear_memory();
+	void game_Lost();
 	Engine();
 	~Engine();
 };

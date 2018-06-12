@@ -4,7 +4,7 @@
 Engine::Engine()
 {
 	srand(time(NULL)); //random seed
-
+	textureSet = &TextureSet::getInstance();
 	//window set
 	VideoMode vmode(800, 600);
 	Vector2u vec2u(800, 600);
@@ -16,7 +16,7 @@ Engine::Engine()
 	
 	
 	//my ship
-	myShip = new(MyShip);
+	myShip = new MyShip(textureSet->ship_bae);
 
 	font.loadFromFile("PressStart2P.ttf");
 	myPoints.setFont(font);
@@ -44,7 +44,6 @@ bool Engine::ifFight()
 void Engine::open_item_shop()
 {
 	okno_sklepu = true;
-	cout << "sklep";
 	string tekst_sklepu;
 	string upg_tekst;
 	string pointer;
@@ -206,7 +205,6 @@ void Engine::open_item_shop()
 void Engine::menu()
 {
 	okno_menu = true;
-	cout << "menu";
 	string tekst_menu;
 	string pointer = "<";
 	Text text;
@@ -256,18 +254,18 @@ void Engine::menu()
 					if (arrow.getPosition().y == 255)
 					{
 						okno_menu = false;
-						okno_sklepu - false;
+						okno_sklepu = false;
 						okno_walki = true;
+						myShip->reset();
 					}
 					else if (arrow.getPosition().y == 285)
 					{
 						load();
-						cout << "LOAD";
 					}
 					else if (arrow.getPosition().y == 315)
 					{
 						okno_menu = false;
-						okno_sklepu - false;
+						okno_sklepu = false;
 						okno_walki = false;
 					}
 				}
@@ -280,12 +278,11 @@ void Engine::menu()
 		text.setString(tekst_menu);
 		text.setPosition(280, 255);
 		window.draw(text);
-
 		//strzalka
 		window.draw(arrow);
-
 		window.display();
 	}
+	
 }
 
 
@@ -300,7 +297,6 @@ void Engine::save()
 		{
 			
 			file << myShip->getGameLevel() <<endl<< myShip->getMaxHp() << endl << myShip->getActHp() << endl << myShip->getActShield() << endl << myShip->getPoints() << endl << myShip->getBulletLevel() << endl << myShip->getRocketLevel() << endl << myShip->getLaserLevel();
-			//usatwienia statku
 		}
 		else
 		{
@@ -326,10 +322,12 @@ void Engine::load()
 		{
 			int laserLvl, rocketLvl, bulletLvl, maxLife, actLife, shield, points, gameLvl;
 			file >> gameLvl >> maxLife >> actLife >> shield >> points >> bulletLvl >> rocketLvl >> laserLvl;
-			//usatwienia statku
+			
+			myShip->setStats(gameLvl, maxLife, actLife, shield, points, bulletLvl, rocketLvl, laserLvl);
 			okno_menu = false;
 			okno_walki = false;
 			okno_sklepu = true;
+			file.close();
 		}
 		else
 		{
@@ -343,6 +341,54 @@ void Engine::load()
 		cout << "There's problem with:" << str;
 	}
 }
+
+void Engine::clear_memory()
+{
+	for (int i = 0; i < enemyShips.size(); i++)
+	{
+		delete enemyShips[i];
+		enemyShips.erase(enemyShips.begin()+i);
+		
+	}
+	for (int i = 0; i < myBullet.size(); i++)
+	{
+		delete myBullet[i];
+		myBullet.erase(myBullet.begin() + i);
+	}
+	for (int i = 0; i < enemyBullet.size(); i++)
+	{
+		delete enemyBullet[i];
+		enemyBullet.erase(enemyBullet.begin() + i);
+	}
+	for (int i = 0; i < animations.size(); i++)
+	{
+		delete animations[i];
+		animations.erase(animations.begin() + i);
+	}
+	for (int i = 0; i < bonuses.size(); i++)
+	{
+		delete bonuses[i];
+		bonuses.erase(bonuses.begin() + i);
+	}
+	enemyShips.clear();
+	enemyShips.shrink_to_fit();
+
+	enemyBullet.clear();
+	enemyBullet.shrink_to_fit();
+
+	myBullet.clear();
+	myBullet.shrink_to_fit();
+
+	animations.clear();
+	animations.shrink_to_fit();
+
+	bonuses.clear();
+	bonuses.shrink_to_fit();
+
+	myShip->move_back();
+}
+
+
 //tworzy nowa fale przeciwnikow
 void Engine::next_wave()
 {
@@ -352,15 +398,15 @@ void Engine::next_wave()
 		{
 			for (int i = 0; i < 10; i++)
 			{
-				enemyShips.push_back(new B1_ship(rand() % 800, rand() % 200 - 200, myShip->getGameLevel()));
+				enemyShips.push_back(new B1_ship(rand() % 800, rand() % 200 - 200, myShip->getGameLevel(),textureSet->enemy));
 			}
-			enemyShips.push_back(new B0_ship(32, -40, myShip->getGameLevel()));
-			enemyShips.push_back(new B0_ship(768, -40, myShip->getGameLevel()));
+			enemyShips.push_back(new B0_ship(32, -40, myShip->getGameLevel(), textureSet->enemy));
+			enemyShips.push_back(new B0_ship(768, -40, myShip->getGameLevel(), textureSet->enemy));
 			wave--;
 		}
 		else if(wave ==0)
 		{
-			enemyShips.push_back(new boss_A(410, -125));
+			enemyShips.push_back(new boss_A(410, -125, textureSet->enemy));
 			wave--;
 		}
 
@@ -376,6 +422,33 @@ Engine::~Engine()
 bool Engine::window_ok()
 {
 	return window.isOpen();
+}
+
+void Engine::game_Lost()
+{
+	if (myShip->getLife() <= 0)
+	{
+		//clear_memory();
+		Clock koniec_gry;
+		koniec_gry.restart();
+		Text end_game;
+		end_game.setFont(font);
+		end_game.setCharacterSize(80);
+		end_game.setStyle(sf::Text::Bold);
+		end_game.setFillColor(sf::Color::White);
+		end_game.setString("YOU LOST");
+		end_game.setPosition(80, 220);
+		okno_walki = false;
+		while (koniec_gry.getElapsedTime().asSeconds() < 3)
+		{
+			window.clear(Color::Black);
+			window.draw(end_game);
+			window.display();
+		}
+		okno_menu = true;
+		okno_sklepu = false;
+		okno_walki = false;
+	}
 }
 
 
@@ -410,14 +483,14 @@ void Engine::drawAll()
 				//dodaje animacje wybuchajacego pocisku
 				if (typeid(*myBullet[i]) == typeid(standard_bullet))
 				{
-					animations.push_back(new bullet_explode_animation(myBullet[i]->getPosition()));
+					animations.push_back(new bullet_explode_animation(myBullet[i]->getPosition(),textureSet->bullet_explode));
 					delete myBullet[i];
 					myBullet.erase(myBullet.begin() + i);
 				}
 				//dodaje animacje wybuchajacej rakiety
 				else if (typeid(*myBullet[i]) == typeid(rocket))
 				{
-					animations.push_back(new rocket_explode_animation(myBullet[i]->getPosition()));
+					animations.push_back(new rocket_explode_animation(myBullet[i]->getPosition(),textureSet->bullet_explode));
 					delete myBullet[i];
 					myBullet.erase(myBullet.begin() + i);
 				}
@@ -445,13 +518,13 @@ void Engine::drawAll()
 			{
 				if (typeid(*enemyBullet[i]) == typeid(standard_bullet))
 				{
-					animations.push_back(new bullet_explode_animation(enemyBullet[i]->getPosition()));
+					animations.push_back(new bullet_explode_animation(enemyBullet[i]->getPosition(),textureSet->bullet_explode));
 					delete enemyBullet[i];
 					enemyBullet.erase(enemyBullet.begin() + i);
 				}
 				else if (typeid(*enemyBullet[i]) == typeid(rocket))
 				{
-					animations.push_back(new rocket_explode_animation(enemyBullet[i]->getPosition()));
+					animations.push_back(new rocket_explode_animation(enemyBullet[i]->getPosition(),textureSet->rocket_explode));
 					delete enemyBullet[i];
 					enemyBullet.erase(enemyBullet.begin() + i);
 				}
@@ -481,8 +554,20 @@ void Engine::drawAll()
 			if (enemyShips[i]->getLife() <= 0)
 			{
 				myShip->grantPoints(enemyShips[i]->getPoints());
-				animations.push_back(new rocket_explode_animation(enemyShips[i]->getPosition()));
-				bonuses.push_back(new bonus(enemyShips[i]->getPosition(), rand() % 11, 1));
+				animations.push_back(new rocket_explode_animation(enemyShips[i]->getPosition(),textureSet->rocket_explode));
+				int a = rand() % 11;
+				if (a < 7)
+				{
+					bonuses.push_back(new bonus(enemyShips[i]->getPosition(), a, 1, textureSet->bonus_points));
+				}
+				else if (a > 9)
+				{
+					bonuses.push_back(new bonus(enemyShips[i]->getPosition(), a, 1, textureSet->bonus_shield));
+				}
+				else
+				{
+					bonuses.push_back(new bonus(enemyShips[i]->getPosition(), a, 1, textureSet->bonus_health));
+				}
 				delete enemyShips[i];
 				enemyShips.erase(enemyShips.begin() + i);
 			}
@@ -497,29 +582,6 @@ void Engine::drawAll()
 
 	//-----------------------------------------------------------------------------------------------------------------------------
 	//DRAW OUR SHIP
-	if (myShip->getLife() <= 0)
-	{
-		//clear_memory();
-		Clock koniec_gry;
-		koniec_gry.restart();
-		Text end_game;
-		end_game.setFont(font);
-		end_game.setCharacterSize(80);
-		end_game.setStyle(sf::Text::Bold);
-		end_game.setFillColor(sf::Color::White);
-		end_game.setString("YOU LOST");
-		end_game.setPosition(80, 220);
-		okno_walki = false;
-		while (koniec_gry.getElapsedTime().asSeconds() < 3)
-		{
-			window.clear(Color::Black);
-			window.draw(end_game);
-			window.display();
-		}
-		okno_menu = true;
-		okno_sklepu = false;
-		okno_walki = false;
-	}
 	window.draw(*myShip);
 
 	//-----------------------------------------------------------------------------------------------------------------------------
@@ -578,16 +640,6 @@ void Engine::drawAll()
 	myPoints.setPosition(400-(txtSize/2)*30, 0);
 	myPoints.setPosition(300, 0);
 	window.draw(myPoints);
-
-	//WYPISZ ZAWARTOSC WEKTOROW
-	/*
-	system("cls");
-	cout << "MyBullet: " << myBullet.size()<<endl;
-	cout << "Enemy ships: " << enemyShips.size() << endl;
-	cout << "Animations: " << animations.size() << endl;
-	cout << "EnemyBullets: " << enemyBullet.size() << endl;
-	*/
-
 }
 
 
@@ -615,12 +667,12 @@ void Engine::move_All()
 			B0_ship *wsk = dynamic_cast<B0_ship*>(enemyShips[i]);
 			wsk->trace(myShip->getPosition());
 			wsk->move();	
-			wsk->aim(enemyBullet, myShip->getPosition());
+			wsk->aim(enemyBullet, myShip->getPosition(), textureSet->bullet);
 		}	
 		if (typeid(*enemyShips[i]) == typeid(B1_ship))
 		{
 			B1_ship *wsk = dynamic_cast<B1_ship*>(enemyShips[i]);
-			wsk->shoot(enemyBullet);
+			wsk->shoot(enemyBullet, textureSet ->bullet);
 			wsk->move();
 			
 		}
@@ -628,7 +680,7 @@ void Engine::move_All()
 		{
 			boss_A*wsk = dynamic_cast<boss_A*>(enemyShips[i]);
 			wsk->move();
-			wsk->shoot(enemyBullet);
+			wsk->shoot2(enemyBullet, textureSet->bullet, textureSet->rocket);
 		}
 	}
 
@@ -672,7 +724,7 @@ void Engine::update_colission()
 		{
 			myShip->gotHit(i->getLife());	//dostajemy tyle obrazen ile przeciwnikowi zosta³o ¿ycia podczas kolizji
 			i->crash();
-			animations.push_back(new rocket_explode_animation(i->getPosition()));
+			animations.push_back(new rocket_explode_animation(i->getPosition(),textureSet->bullet_explode));
 		}
 	}
 
@@ -693,7 +745,7 @@ void Engine::updateNumberOfEnemies()
 {
 	if (enemyShips.size() < 10)
 	{
-		enemyShips.push_back(new B1_ship(rand() % 800, -60, myShip->getGameLevel()));
+		enemyShips.push_back(new B1_ship(rand() % 800, -60, myShip->getGameLevel(), textureSet->enemy));
 	}
 }
 
@@ -731,13 +783,13 @@ void Engine::start()
 			}
 		}
 
-		if (fps.getElapsedTime().asMilliseconds() > 1000)
+		/*if (fps.getElapsedTime().asMilliseconds() > 1000)
 		{
 			fps.restart();
 			//cout << klatki << endl;
 			klatki = 0;
 		}
-		klatki++;
+		klatki++;*/
 
 		//sprawdza zdarzenia na oknie 
 		while (window.pollEvent(eve))
@@ -773,19 +825,14 @@ void Engine::start()
 			}
 			 if (Keyboard::isKeyPressed(Keyboard::LControl))
 			 {
-				 myShip->shoot(myBullet);
+				 myShip->shoot2(myBullet, textureSet->bullet, textureSet->rocket);
 			 }
-
-			
-			/* //USTAWIA ILE ERKANU MA BYC WIDOCZNE DLA NAS
-			 View view;
-			 view.setSize(600, 400);
-			 view.setCenter(400, 300);
-			 window.setView(view);*/
 	
 		move_All();				//przesuwa wszystkie elementy
 		update_colission();		//sprawdza kolizje
 		drawAll();				//rysuje wszystkie elementy
 		window.display();		//wyswietla okno
+		game_Lost();
 	}
+	clear_memory();
 }

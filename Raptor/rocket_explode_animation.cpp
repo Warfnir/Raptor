@@ -2,9 +2,8 @@
 #include "rocket_explode_animation.h"
 
 
-rocket_explode_animation::rocket_explode_animation(Vector2f pos)
+rocket_explode_animation::rocket_explode_animation(Vector2f pos, Texture &texture)
 {
-	texture.loadFromFile("rocket_explode.png");
 	sprite.setTexture(texture);
 	sprite.setTextureRect(IntRect(0, 0, 32, 32));
 	sprite.setOrigin(16, 16);
