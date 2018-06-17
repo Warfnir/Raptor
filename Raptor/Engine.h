@@ -41,6 +41,7 @@ private:
 	Text myPoints;
 	Font font;
 	Map mapa;
+	
 
 	//elementy rozgrywki
 	int wave;

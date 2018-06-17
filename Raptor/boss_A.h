@@ -18,7 +18,7 @@ private:
 	double maxV;
 	float rotation;
 public:
-	boss_A(float x, float y, Texture &texture);
+	boss_A(float x, float y, Texture &texture, int lvl);
 	~boss_A();
 
 	void shoot(vector<Bullet*> &vec, Texture &texture);	//strzal 

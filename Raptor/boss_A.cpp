@@ -2,7 +2,7 @@
 #include "boss_A.h"
 
 
-boss_A::boss_A(float x, float y, Texture &texture)
+boss_A::boss_A(float x, float y, Texture &texture, int lvl)
 {
 	sprite.setTexture(texture);
 	sprite.setOrigin(64, 40);
@@ -11,7 +11,7 @@ boss_A::boss_A(float x, float y, Texture &texture)
 	sprite.setPosition(x, y);
 	out = false;
 	points = 500;
-	HP = 1000;
+	HP = 1000*lvl;
 	bullets_counter = 0;
 	begin_fight = false;
 	attack_A = false;

@@ -14,7 +14,6 @@ Engine::Engine()
 	//background
 	main_music.openFromFile("Retribution.ogg");
 	
-	
 	//my ship
 	myShip = new MyShip(textureSet->ship_bae);
 
@@ -406,16 +405,44 @@ void Engine::next_wave()
 		}
 		else if(wave ==0)
 		{
-			enemyShips.push_back(new boss_A(410, -125, textureSet->enemy));
+			enemyShips.push_back(new boss_A(410, -125, textureSet->enemy, myShip->getGameLevel()));
 			wave--;
 		}
-
+	
 	}
 }
 
+
 Engine::~Engine()
 {
-	
+	//czysci wszystkie elementy stowrzone przy pomocy new
+	delete myShip;
+	for (auto it = enemyShips.begin(); it != enemyShips.end(); it++)
+	{
+		delete *it;
+		enemyShips.erase(it);
+	}
+	for (auto it = myBullet.begin(); it != myBullet.end(); it++)
+	{
+		delete *it;
+		myBullet.erase(it);
+	}
+	for (auto it = enemyBullet.begin(); it != enemyBullet.end(); it++)
+	{
+		delete *it;
+		enemyBullet.erase(it);
+	}
+	for (auto it = animations.begin(); it != animations.end(); it++)
+	{
+		delete *it;
+		animations.erase(it);
+	}
+	for (auto it = bonuses.begin(); it != bonuses.end(); it++)
+	{
+		delete *it;
+		bonuses.erase(it);
+	}
+	window.close();
 }
 
 //zwraca czy okno dziala poprawnie

@@ -17,6 +17,13 @@ Map::Map()
 
 Map::~Map()
 {
+	for (int i = 0; i < mat.size(); i++)
+	{
+		for (int j = 0; j < mat[i].size(); j++)
+		{
+			delete mat[i][j];
+		}
+	}
 }
 
 //RYSUJE CALA MAPE
@@ -92,12 +99,12 @@ void Map::mapOutOfWindow()
 			if (i == 0)
 			{
 				int g = generate_next_tile(*mat[size-1][i]);
-				mat[size][i] = new Tile(i * 32, 600 - (size-1) * 32, static_cast<bg_type>(g));
+				mat[size][i] = new Tile(i * 32, 600 - (size-1) * 32 +1, static_cast<bg_type>(g));
 			}
 			else
 			{
 				int g = generate_next_tile(*mat[size][i - 1], *mat[size - 1][i]);
-				mat[size][i] = new Tile(i * 32, 600 - (size-1) * 32, static_cast<bg_type>(g));
+				mat[size][i] = new Tile(i * 32, 600 - (size-1) * 32 +1, static_cast<bg_type>(g));
 			}
 		}
 	}
