@@ -1,5 +1,7 @@
 #pragma once
 #include "stdafx.h"
+#include "Ship.h"
+#include "Bullet.h"
 using namespace sf;
 using namespace std;
 

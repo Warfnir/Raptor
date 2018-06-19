@@ -1,5 +1,7 @@
 #pragma once
 #include "stdafx.h"
+#include "object.h"
+#include "Bullet.h"
 using namespace sf;
 using namespace std;
 

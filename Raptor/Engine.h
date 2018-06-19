@@ -1,6 +1,10 @@
 #pragma once
 #include "stdafx.h"
 #include "Map.h"
+#include "MyShip.h"
+#include"EnemyShip.h"
+#include "bonus.h"
+#include "animation.h"
 using namespace sf;
 using namespace std;
 
@@ -11,12 +15,7 @@ private:
 	//potrzebne by zawieral wektory
 	//do tych klas
 	
-	friend class MyShip;
-	friend class EnemyShip;
-	friend class Bullet;
-	friend class Map;
-	friend class animation;
-	friend class bonus;
+
 
 	RenderWindow window;
 	Event eve;
@@ -62,7 +61,7 @@ public:
 	void open_item_shop();	//otwiera sklep po zakonczonej walce
 	void save();
 	//------------------------------------------------------------------------------------------------
-	void start();
+	void start();		//okno walki
 	void next_wave();		//generuje kolejnych przeciwników
 	bool isCollision(Vector2f a, double Ra, Vector2f b, double Rb);		//zwraca czy obiekty koliduj¹
 	void drawAll();			//rysuje wszystkich na ekranie
